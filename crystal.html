@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id=crystals>
+        <img id=one src="https://mk0marmoset2r9got8jk.kinstacdn.com/wp-content/uploads/2018/09/dylan-mellott-crystal-wide2.gif" alt="" ; width="300px" , height="150px">
+        <img id=two src="https://theawakenedstate.net/wp-content/uploads/2015/04/quartz1-1100x731.jpg" alt="" ; width="300px" , height="150px">
+        <img id=three src="https://www.scienceprojectlab.com/images/copper-sulfate-crystals-8.jpg" alt="" ; width="300px" , height="150px">
+        <img id=four src="https://miro.medium.com/max/1260/0*AmwIyi21fDd9Guwz.jpg" alt="" ; width="300px" , height="150px">
+
+
+    </div>
+    <p id=results> Target Point: </p>
+    <p id="score">Score: </p>
+    <P id="tal"> Total: </P>
+    <p id="wins">Wins: </p>
+    <p id="loseses">Loses: </p>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script>
+        var randomResult;
+        var wins = 0;
+        var loseses = 0;
+        var randomCrystals;
+        var dataNum;
+        var calc = 0;
+
+        var restGame = function() {
+            randomResult = Math.floor(Math.random() * 100) + 19;
+            $("#results").text("Target Point: " + randomResult);
+
+            for (var i = 0; i < 4; i++) {
+                randomCrystals = Math.floor(Math.random() * 12) + 1;
+                $("#score").html("Score: " + 0);
+                var thisImg = $("img").get(i)
+                console.log(thisImg);
+                $(thisImg).attr("data-number", randomCrystals);
+            }
+
+        }
+
+        restGame();
+
+        $("img").click(function() {
+            dataNum = $(this).attr("data-number");
+            console.log(dataNum);
+            calc += Number(dataNum);
+            console.log(calc);
+            $("#tal").html("Total: " + calc);
+            $("#score").html("Score: " + dataNum);
+
+
+            if (calc === randomResult) {
+                wins++;
+                $("#wins").html("Wins: " + wins);
+                calc = 0;
+                alert("You Win!");
+                restGame();
+
+            }
+            if (calc > randomResult) {
+                loseses++;
+                $("#loseses").html("Loses: " + loseses);
+                calc = 0;
+                alert("You Lost!")
+                restGame();
+            }
+
+
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+
+        //
+    </script>
+</body>
+
+
+</html>
